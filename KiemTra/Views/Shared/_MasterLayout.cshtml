@@ -1,0 +1,548 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/131e0ec2d1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <style>
+        header {
+            padding: 20px;
+            box-shadow: 1px 2px 3px 0px black;
+            margin: 10px 0;
+        }
+        .logo img{
+            height:60px;
+        }
+
+        .header__box {
+            position: relative;
+        }
+
+        .seach-box {
+            position: relative;
+            height: 100%;
+        }
+
+            .seach-box input {
+                width: 650px;
+                padding: 0 25px;
+            }
+
+
+
+        #search_icon {
+            position: absolute;
+            z-index: 3;
+            top: 6px;
+            left: 6px;
+            color: black;
+        }
+
+
+        #search-box-title {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            right: 20px;
+            color: black;
+            text-decoration: none;
+        }
+
+            #search-box-title a {
+                color: black;
+            }
+
+            #search-box-title::before {
+                position: absolute;
+                width: 0.5px;
+                height: 100%;
+                background: red;
+                content: " ";
+                bottom: 0;
+                left: -10px;
+            }
+
+        /* HEADER ICON */
+
+        .house-icon, .astra-icon, .taikhoan-icon, .shopping-cart {
+            padding: 0 10px;
+        }
+
+            .house-icon a, .astra-icon a, .taikhoan-icon a, .shopping-cart a {
+                padding: 0 2px;
+                color: black;
+            }
+
+        /* NAVBAR */
+        nav a {
+            color: black;
+            text-decoration: none;
+            padding: 0 2px;
+        }
+
+        /* SECTION */
+
+        main {
+            background: rgb(245, 245, 250);
+            min-height: 100vh;
+        }
+
+        .section-left {
+            flex: 1.4;
+        }
+
+        .section-right {
+            flex: 0.6;
+        }
+
+        .section-left__slide__box {
+            background: white;
+            width: 100%;
+            height: 60px;
+        }
+
+        .section-left__slide {
+            height: 10px;
+            width: 100%;
+            background: lightgreen;
+            border-radius: 30px;
+        }
+
+        /* SECTION LEFT NAV */
+
+        .section-left__nav {
+            background: white;
+            margin: 10px 0;
+        }
+
+        .section-left__nav__items-boxes {
+            display: flex;
+            justify-content: space-between;
+            width: 460px;
+        }
+
+        /* SECTION LEFT BOX-1 */
+
+
+        .section-left__box1 {
+            margin: 20px 0;
+        }
+
+        .section-left__box1, .section-left__box2 {
+            background: white;
+            height: 260px;
+        }
+
+
+        .section-left__box1__sanpham__img img, .section-left__box2__sanpham__img img {
+            width: 200px;
+        }
+
+        /* SECTION RIGHT */
+
+
+        .section-right {
+            margin: 0 10px;
+            height: 500px;
+        }
+
+        .section-right__thanhtoan__img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+
+            .section-right__thanhtoan__img img {
+                width: 200px;
+            }
+
+        /* SECTION RIGHt KHUYEN MAI */
+
+        .section-right__khuyenmai {
+            height: 200px;
+            background: white;
+            padding: 10px;
+        }
+
+        .section-right__khuyenmai_khuyenmaititle {
+            margin: 10px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+            .section-right__khuyenmai_khuyenmaititle a {
+                color: black;
+            }
+
+            .section-right__khuyenmai_khuyenmaititle i {
+                margin-top: 6px;
+                margin-right: 10px;
+            }
+
+        /* THANH TOAN */
+
+
+        .section-right__thanhtoan {
+            background: white;
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        .section-right__thanhtoan__tinhtong p {
+            margin: 0 4px;
+        }
+
+        /* BUTTON */
+
+        .section-right__button {
+            background: red;
+            height: 70px;
+        }
+
+            .section-right__button a {
+                color: white;
+                text-decoration: none;
+            }
+    </style>
+    <div class="container-fluid">
+        <header>
+            <div class="d-flex justify-content-between header__box">
+                <div class="logo">
+                    <img src="~/Content/logo.png" />
+                </div>
+                <div class="seach-box">
+                    <a href="##">
+                        <i id="search_icon" class="fa-solid fa-magnifying-glass"></i>
+                    </a>
+                    <input type="search" placeholder="Giao Nhanh 2 gio" />
+
+                    <a class="d-flex" id="search-box-title" href="##">
+                        Tim Kiem
+                    </a>
+                </div>
+
+                <div class="d-flex header__icon_p">
+                    <div class="d-flex house-icon">
+                        <a href="##">
+                            <i class="fa-solid fa-house"></i>
+                        </a>
+
+                        <p> Trang Chủ </p>
+                    </div>
+
+                    <div class="d-flex astra-icon">
+                        <a href="##">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                        </a>
+
+                        <p> Astra </p>
+                    </div>
+
+                    <div class="d-flex taikhoan-icon">
+                        <a href="##">
+                            <i class="fa-regular fa-face-smile"></i>
+                        </a>
+                        <p> Tài Khoản </p>
+                    </div>
+
+                    <div class="shopping-cart">
+                        <a href="##">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="d-flex justify-content-between">
+                <div class="nav-title">
+                    <a href="##"> Khỏe đẹp  </a>
+                    <a href="##"> Nhà cửa   </a>
+                    <a href="##"> Sách </a>
+                    <a href="##"> Thể thao </a>
+                    <a href="##"> Trái cây </a>
+                    <a href="##"> Thịt, trứng </a>
+                    <a href="##"> Rau, củ, quả </a>
+                    <a href="##"> Sữa, bơ, phô mai </a>
+                    <a href="##"> Hải sản </a>
+                    <a href="##"> Gạo, Mì ăn liền </a>
+                </div>
+
+                <div class="Diachi">
+                    <i class="fa-solid fa-location-dot"></i>
+                    Giao đến: Q12, P.Hiệp Thành, Hồ Chí Minh
+                </div>
+            </nav>
+            <div>
+                @RenderBody()
+            </div>
+        </header>
+
+        <main>
+            <section>
+                <h1> Giỏ Hàng </h1>
+            </section>
+
+            <section class="d-flex">
+                <div class="section-left">
+                    <div class="d-flex justify-content-center align-items-center section-left__slide__box">
+                        <div class="section-left__slide">
+
+                        </div>
+                    </div>
+
+                    <div class="p-3 d-flex justify-content-between section-left__nav">
+                        <div class="section-left__nav__button">
+                            <form>
+                                <input id="selectionall" type="checkbox" />
+                                <span>  Tất cả </span>
+                            </form>
+                        </div>
+
+                        <div class="d-flex section-left__nav__items-boxes">
+                            <div class="section-left__nav__dongia">
+                                Đơn Giá
+                            </div>
+
+                            <div class="section-left__nav__soluong">
+                                Số lượng
+                            </div>
+
+                            <div class="section-left__nav__thanhtien">
+                                Thành tiền
+                            </div>
+
+                            <div class="section-left__nav__icon">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="section-left__boxes">
+                        <div class="p-3 d-flex flex-column section-left__box1">
+                            <div class="section-left__box1__button">
+                                <form>
+                                    <input type="checkbox" class="selection" />
+                                    <i class="fa-solid fa-bag-shopping"></i>
+                                    Gia Dụng Việt >
+                                </form>
+                            </div>
+
+                            <div class="d-flex justify-content-between section-left__box1__sanpham">
+                                <div class="d-flex align-items-start section-left__box1__sanpham__img">
+                                    <img src="~/Content/a54.png" />
+                                    
+                                    <p class="ms-3"> Điện thoại samsung A71 8/256GB </p>
+
+                                </div>
+
+
+                                <div class="section-left__box1__sanpham__dongia">
+                                    <span> 8.700.000 <sup>đ</sup></span>
+                                </div>
+
+                                <div class="section-left__box1__sanpham__soluong">
+                                    <button onclick="PlusBtn1()"> + </button>
+                                    <span class="numberbox1"> 1 </span>
+                                    <button onclick="MinusBtn1()"> - </button>
+                                </div>
+
+                                <div class="section-left__box1__sanpham__thanhtien">
+                                    <span> 8.400.000 <sup> đ </sup></span>
+                                </div>
+
+
+                                <div class="section-left__box1__sanpham__icon">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="section-left__box1__khuyenmai">
+                                Shop Khuyến Mãi
+                            </div>
+                        </div>
+
+                        <div class="p-3 section-left__box2">
+                            <div class="section-left__box2__button">
+                                <form>
+                                    <input type="checkbox" class="selection" />
+                                    <i class="fa-solid fa-bag-shopping"></i>
+                                    Gia Dụng Việt >
+                                </form>
+                            </div>
+
+                            <div class="d-flex justify-content-between section-left__box2__sanpham">
+                                <div class="d-flex section-left__box2__sanpham__img">
+                                    <img src="~/Content/a54.png" />
+                                    <p class="ms-3"> Điện thoại samsung A71 8/256GB </p>
+                                </div>
+
+
+                                <div class="section-left__box2__sanpham__dongia">
+                                    <span id="dongia_box2"> 8700000 <sup>đ</sup></span>
+                                </div>
+
+                                <div class="section-left__box2__sanpham__soluong">
+                                    <button id="Plusbtn" onclick="PlusBtn2()"> + </button>
+                                    <span class="numberbox2"> 0 </span>
+                                    <button id="Minusbtn" onclick="MinusBtn2()"> - </button>
+                                </div>
+
+                                <div class="section-left__box2__sanpham__thanhtien">
+                                    <span class="thanhtien_box2">
+                                        1
+                                        <sup> đ </sup>
+
+                                    </span>
+                                </div>
+
+
+
+                                <div class="section-left__box2__sanpham__icon">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="section-left__box2__khuyenmai">
+                                Shop Khuyến Mãi
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-right">
+                    <div class="d-flex flex-column section-right__khuyenmai">
+                        <div class="d-flex justify-content-between section-right__khuyenmai__title">
+                            <div class="section-right__khuyenmai__title">
+                                <p> Tiki Khuyến Mãi </p>
+                            </div>
+
+                            <div class="section-right__khuyenmai__cothechon">
+                                <p> Có thể chọn 2 </p>
+                            </div>
+                        </div>
+
+                        <div class="section-right__thanhtoan__img">
+                            <img src="~/Content/web_720x720_624_HOAN_TIEN_K_GIOI_HAN_ebb26642f9.jpg" />
+                        </div>
+
+                        <div class="d-flex justify-content-center section-right__khuyenmai_khuyenmaititle">
+                            <a href="##">
+                                <i class="fa-solid fa-ticket"> </i>
+                            </a>
+                            <p> Chọn hoặc nhập mã khuyến mãi </p>
+                        </div>
+                    </div>
+
+                    <div class="section-right__thanhtoan">
+                        <div class="d-flex justify-content-between section-right__thanhtoan__tamtinh">
+                            <p> Tạm Tính </p>
+                            <span id="tamtinh"> 8.400.000Đ </span>
+                        </div>
+
+                        <hr />
+
+                        <div class="d-flex justify-content-between section-right__thanhtoan__tongtien">
+                            <div class="d-flex section-right__thanhtoan__tinhtong">
+                                <p> Tongtien :  </p>
+
+                                <p>
+                                    8.480.000 <sup> đ </sup>
+                                </p>
+
+                            </div>
+
+                            <div class="section-right__thanhtoan__freeship">
+                                <span> FREESHIP </span> đã được áp dụng
+
+
+                                <p>
+                                    (Đã bao gồm VAT nếu có)
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center section-right__button">
+                        <a href="##"> Mua Hàng (1) </a>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
+
+<script language="javascript">
+
+    // BUTTON
+
+    function PlusBtn1() {
+        const number = document.querySelector('.numberbox1');
+        let count = parseInt(number.textContent);
+        count++;
+        number.innerHTML = count;
+
+    }
+
+    function MinusBtn1() {
+        const number = document.querySelector('.numberbox1');
+        let count = parseInt(number.textContent);
+        count--;
+        number.innerHTML = count;
+    }
+
+    function PlusBtn2() {
+        const number = document.querySelector('.numberbox2');
+        let count = parseInt(number.textContent);
+        count++;
+        number.innerHTML = count;
+
+        const dongia = parseFloat(document.querySelector('#dongia_box2').innerHTML);
+        const Caculate = document.querySelector('.thanhtien_box2');
+        Caculate.innerHTML = (count * dongia);
+        Caculate.innerHTML = Caculate.innerHTML + "VNĐ";
+
+
+    }
+
+    function MinusBtn2() {
+        const number = document.querySelector('.numberbox2');
+        let count = parseInt(number.textContent);
+        count--;
+        number.innerHTML = count;
+
+        const dongia = parseFloat(document.querySelector('#dongia_box2').innerHTML);
+        // thanh tien
+        const Caculate = document.querySelector('.thanhtien_box2');
+        Caculate.innerHTML = (parseInt(Caculate.innerHTML) - dongia);
+        Caculate.innerHTML = Caculate.innerHTML + '<sup> đ <\sup';
+
+    }
+
+    // selection all
+
+    const selectionall = document.getElementById('selectionall');
+    const selection = document.querySelectorAll('.selection');
+    selectionall.addEventListener('change', function () {
+        selection.forEach(selection => {
+            selection.checked = selectionall.checked;
+        })
+    })
+
+
+</script>
