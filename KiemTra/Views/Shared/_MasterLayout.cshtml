@@ -18,8 +18,9 @@
             box-shadow: 1px 2px 3px 0px black;
             margin: 10px 0;
         }
-        .logo img{
-            height:60px;
+
+        .logo img {
+            height: 60px;
         }
 
         .header__box {
@@ -28,46 +29,44 @@
 
         .seach-box {
             position: relative;
-            height: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            background-color: white;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 0 15px;
+            width: 100%;
+            max-width: 600px;
         }
 
             .seach-box input {
-                width: 650px;
-                padding: 0 25px;
+                border: none;
+                outline: none;
+                flex-grow: 1;
+                padding: 0 10px;
+                font-size: 16px;
+                color: #333;
+                background-color: transparent;
             }
-
-
 
         #search_icon {
-            position: absolute;
-            z-index: 3;
-            top: 6px;
-            left: 6px;
-            color: black;
+            color: #555;
+            font-size: 18px;
         }
-
 
         #search-box-title {
-            position: absolute;
-            height: 100%;
-            top: 0;
-            right: 20px;
-            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            color: #007bff;
+            margin-left: 10px;
             text-decoration: none;
+            cursor: pointer;
         }
 
-            #search-box-title a {
-                color: black;
-            }
-
-            #search-box-title::before {
-                position: absolute;
-                width: 0.5px;
-                height: 100%;
-                background: red;
-                content: " ";
-                bottom: 0;
-                left: -10px;
+            #search-box-title:hover {
+                color: #0056b3;
             }
 
         /* HEADER ICON */
@@ -212,6 +211,45 @@
                 color: white;
                 text-decoration: none;
             }
+        .badge {
+            font-size: 12px;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: white;
+        }
+        .progress-container {
+            width: 100%; /* Độ rộng toàn bộ container */
+            height: 20px; /* Chiều cao của thanh */
+            background-color: #e0e0e0; /* Màu nền nhạt */
+            border-radius: 10px; /* Bo tròn các góc */
+            overflow: hidden;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        #progress-bar {
+            height: 100%; /* Chiều cao khớp với container */
+            background-color: #4caf50; /* Màu xanh của thanh tiến trình */
+            width: 0%; /* Mặc định khởi đầu là 0% */
+            transition: width 0.3s ease-in-out; /* Hiệu ứng mượt khi thay đổi độ rộng */
+            position: relative;
+        }
+
+        #progress-text {
+            position: absolute;
+            right: 10px; /* Đặt vị trí giá trị */
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+
     </style>
     <div class="container-fluid">
         <header>
@@ -226,7 +264,7 @@
                     <input type="search" placeholder="Giao Nhanh 2 gio" />
 
                     <a class="d-flex" id="search-box-title" href="##">
-                        Tim Kiem
+                        Tìm kiếm
                     </a>
                 </div>
 
@@ -257,6 +295,7 @@
                     <div class="shopping-cart">
                         <a href="##">
                             <i class="fa-solid fa-cart-shopping"></i>
+                            <span id="cart-count" class="badge bg-danger position-absolute top-0 start-100 translate-middle">0</span>
                         </a>
                     </div>
                 </div>
@@ -293,9 +332,9 @@
 
             <section class="d-flex">
                 <div class="section-left">
-                    <div class="d-flex justify-content-center align-items-center section-left__slide__box">
-                        <div class="section-left__slide">
-
+                    <div class="progress-container">
+                        <div id="progress-bar">
+                            <span id="progress-text"></span>
                         </div>
                     </div>
 
@@ -340,7 +379,7 @@
                             <div class="d-flex justify-content-between section-left__box1__sanpham">
                                 <div class="d-flex align-items-start section-left__box1__sanpham__img">
                                     <img src="~/Content/a54.png" />
-                                    
+
                                     <p class="ms-3"> Điện thoại samsung A71 8/256GB </p>
 
                                 </div>
@@ -395,13 +434,13 @@
 
                                 <div class="section-left__box2__sanpham__soluong">
                                     <button id="Plusbtn" onclick="PlusBtn2()"> + </button>
-                                    <span class="numberbox2"> 0 </span>
+                                    <span class="numberbox2"> 1 </span>
                                     <button id="Minusbtn" onclick="MinusBtn2()"> - </button>
                                 </div>
 
                                 <div class="section-left__box2__sanpham__thanhtien">
                                     <span class="thanhtien_box2">
-                                        1
+                                        8.700.000
                                         <sup> đ </sup>
 
                                     </span>
@@ -450,17 +489,17 @@
                     <div class="section-right__thanhtoan">
                         <div class="d-flex justify-content-between section-right__thanhtoan__tamtinh">
                             <p> Tạm Tính </p>
-                            <span id="tamtinh"> 8.400.000Đ </span>
+                            <span id="tamtinh"> 0Đ </span>
                         </div>
 
                         <hr />
 
                         <div class="d-flex justify-content-between section-right__thanhtoan__tongtien">
                             <div class="d-flex section-right__thanhtoan__tinhtong">
-                                <p> Tongtien :  </p>
+                                <p> Tổng tiền:  </p>
 
                                 <p>
-                                    8.480.000 <sup> đ </sup>
+                                    0 <sup> đ </sup>
                                 </p>
 
                             </div>
@@ -488,7 +527,6 @@
 </html>
 
 <script language="javascript">
-
     // BUTTON
 
     function PlusBtn1() {
@@ -496,14 +534,17 @@
         let count = parseInt(number.textContent);
         count++;
         number.innerHTML = count;
-
+        updateTotalPrice();
     }
 
     function MinusBtn1() {
         const number = document.querySelector('.numberbox1');
         let count = parseInt(number.textContent);
-        count--;
-        number.innerHTML = count;
+        if (count > 1) {
+            count--;
+            number.innerHTML = count;
+            updateTotalPrice();
+        }
     }
 
     function PlusBtn2() {
@@ -512,37 +553,122 @@
         count++;
         number.innerHTML = count;
 
-        const dongia = parseFloat(document.querySelector('#dongia_box2').innerHTML);
-        const Caculate = document.querySelector('.thanhtien_box2');
-        Caculate.innerHTML = (count * dongia);
-        Caculate.innerHTML = Caculate.innerHTML + "VNĐ";
+        const dongia = parseFloat(document.querySelector('#dongia_box2').textContent.replace(/[^\d]/g, ''));
+        const calculate = document.querySelector('.thanhtien_box2');
+        calculate.innerHTML = (count * dongia).toLocaleString('vi-VN') + " đ";
 
-
+        updateTotalPrice();
     }
 
     function MinusBtn2() {
         const number = document.querySelector('.numberbox2');
         let count = parseInt(number.textContent);
-        count--;
-        number.innerHTML = count;
+        if (count > 1) {
+            count--;
+            number.innerHTML = count;
 
-        const dongia = parseFloat(document.querySelector('#dongia_box2').innerHTML);
-        // thanh tien
-        const Caculate = document.querySelector('.thanhtien_box2');
-        Caculate.innerHTML = (parseInt(Caculate.innerHTML) - dongia);
-        Caculate.innerHTML = Caculate.innerHTML + '<sup> đ <\sup';
+            const dongia = parseFloat(document.querySelector('#dongia_box2').textContent.replace(/[^\d]/g, ''));
+            const calculate = document.querySelector('.thanhtien_box2');
+            calculate.innerHTML = (count * dongia).toLocaleString('vi-VN') + " đ";
 
+            updateTotalPrice();
+        }
     }
 
-    // selection all
+    // Tính toán tổng giá
+    function updateTotalPrice() {
+        let totalPrice = 0;
 
-    const selectionall = document.getElementById('selectionall');
-    const selection = document.querySelectorAll('.selection');
-    selectionall.addEventListener('change', function () {
-        selection.forEach(selection => {
-            selection.checked = selectionall.checked;
-        })
-    })
+        // Lặp qua tất cả các checkbox
+        const items = document.querySelectorAll('.selection');
+        items.forEach((item, index) => {
+            if (item.checked) {
+                // Lấy số lượng sản phẩm
+                const quantity = parseInt(document.querySelectorAll('.numberbox1, .numberbox2')[index].textContent);
 
+                // Lấy giá sản phẩm
+                const priceElement = document.querySelectorAll('.section-left__box1__sanpham__dongia span, #dongia_box2')[index];
+                const price = parseFloat(priceElement.textContent.replace(/[^\d]/g, ''));
+
+                // Tính tổng giá cho sản phẩm đó
+                totalPrice += price * quantity;
+            }
+        });
+
+        // Cập nhật giá trị tổng tiền
+        document.querySelector('#tamtinh').textContent = totalPrice.toLocaleString('vi-VN') + " đ";
+        document.querySelector('.section-right__thanhtoan__tinhtong p:nth-child(2)').textContent = totalPrice.toLocaleString('vi-VN') + " đ";
+    }
+
+    // Selection all
+    const selectionAll = document.getElementById('selectionall');
+    const selections = document.querySelectorAll('.selection');
+    selectionAll.addEventListener('change', function () {
+        selections.forEach(selection => {
+            selection.checked = selectionAll.checked;
+        });
+        updateTotalPrice();
+    });
+
+    // Event listener cho các checkbox
+    selections.forEach(selection => {
+        selection.addEventListener('change', updateTotalPrice);
+    });
+    // Tính toán tổng giá và cập nhật số lượng giỏ hàng
+    function updateTotalPrice() {
+        let totalPrice = 0;
+        let selectedCount = 0;
+
+        // Lặp qua tất cả các checkbox
+        const items = document.querySelectorAll('.selection');
+        items.forEach((item, index) => {
+            if (item.checked) {
+                selectedCount++;
+
+                // Lấy số lượng sản phẩm
+                const quantity = parseInt(document.querySelectorAll('.numberbox1, .numberbox2')[index].textContent);
+
+                // Lấy giá sản phẩm
+                const priceElement = document.querySelectorAll('.section-left__box1__sanpham__dongia span, #dongia_box2')[index];
+                const price = parseFloat(priceElement.textContent.replace(/[^\d]/g, ''));
+
+                // Tính tổng giá cho sản phẩm đó
+                totalPrice += price * quantity;
+            }
+        });
+
+        // Cập nhật giá trị tổng tiền
+        document.querySelector('#tamtinh').textContent = totalPrice.toLocaleString('vi-VN') + " đ";
+        document.querySelector('.section-right__thanhtoan__tinhtong p:nth-child(2)').textContent = totalPrice.toLocaleString('vi-VN') + " đ";
+
+        // Cập nhật số lượng trên biểu tượng giỏ hàng
+        document.getElementById('cart-count').textContent = selectedCount;
+
+        // Gọi hàm cập nhật thanh tiến trình
+        updateProgressBar(totalPrice);
+    }
+
+    function updateProgressBar(totalPrice) {
+        const maxPrice = 20000000; // Giới hạn giá tối đa (20 triệu đồng)
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+
+        // Tính toán tỷ lệ dựa trên giá trị tổng tiền
+        let progress = (totalPrice / maxPrice) * 100;
+
+        // Đảm bảo tỷ lệ không vượt quá 100%
+        if (progress > 100) {
+            progress = 100;
+        }
+
+        // Cập nhật chiều rộng của thanh tiến trình
+        progressBar.style.width = progress + '%';
+
+        // Hiển thị giá trị trực tiếp trên thanh
+        progressText.textContent = totalPrice.toLocaleString('vi-VN') + " đ";
+    }
+
+    
 
 </script>
+
