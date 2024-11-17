@@ -529,11 +529,19 @@
 <script language="javascript">
     // BUTTON
 
+    // Cập nhật số lượng sản phẩm 1
     function PlusBtn1() {
         const number = document.querySelector('.numberbox1');
         let count = parseInt(number.textContent);
         count++;
-        number.innerHTML = count;
+        number.textContent = count;
+
+        const priceElement = document.querySelector('.section-left__box1__sanpham__dongia span');
+        const totalPriceElement = document.querySelector('.section-left__box1__sanpham__thanhtien span');
+        const price = parseFloat(priceElement.textContent.replace(/[^\d]/g, ''));
+        const totalPrice = count * price;
+        totalPriceElement.textContent = totalPrice.toLocaleString('vi-VN') + ' đ';
+
         updateTotalPrice();
     }
 
@@ -542,20 +550,30 @@
         let count = parseInt(number.textContent);
         if (count > 1) {
             count--;
-            number.innerHTML = count;
+            number.textContent = count;
+
+            const priceElement = document.querySelector('.section-left__box1__sanpham__dongia span');
+            const totalPriceElement = document.querySelector('.section-left__box1__sanpham__thanhtien span');
+            const price = parseFloat(priceElement.textContent.replace(/[^\d]/g, ''));
+            const totalPrice = count * price;
+            totalPriceElement.textContent = totalPrice.toLocaleString('vi-VN') + ' đ';
+
             updateTotalPrice();
         }
     }
 
+    // Cập nhật số lượng sản phẩm 2
     function PlusBtn2() {
         const number = document.querySelector('.numberbox2');
         let count = parseInt(number.textContent);
         count++;
-        number.innerHTML = count;
+        number.textContent = count;
 
-        const dongia = parseFloat(document.querySelector('#dongia_box2').textContent.replace(/[^\d]/g, ''));
-        const calculate = document.querySelector('.thanhtien_box2');
-        calculate.innerHTML = (count * dongia).toLocaleString('vi-VN') + " đ";
+        const priceElement = document.querySelector('#dongia_box2');
+        const totalPriceElement = document.querySelector('.thanhtien_box2');
+        const price = parseFloat(priceElement.textContent.replace(/[^\d]/g, ''));
+        const totalPrice = count * price;
+        totalPriceElement.textContent = totalPrice.toLocaleString('vi-VN') + ' đ';
 
         updateTotalPrice();
     }
@@ -565,42 +583,61 @@
         let count = parseInt(number.textContent);
         if (count > 1) {
             count--;
-            number.innerHTML = count;
+            number.textContent = count;
 
-            const dongia = parseFloat(document.querySelector('#dongia_box2').textContent.replace(/[^\d]/g, ''));
-            const calculate = document.querySelector('.thanhtien_box2');
-            calculate.innerHTML = (count * dongia).toLocaleString('vi-VN') + " đ";
+            const priceElement = document.querySelector('#dongia_box2');
+            const totalPriceElement = document.querySelector('.thanhtien_box2');
+            const price = parseFloat(priceElement.textContent.replace(/[^\d]/g, ''));
+            const totalPrice = count * price;
+            totalPriceElement.textContent = totalPrice.toLocaleString('vi-VN') + ' đ';
 
             updateTotalPrice();
         }
     }
 
-    // Tính toán tổng giá
+    // Cập nhật tổng tiền và thanh tiến trình
     function updateTotalPrice() {
         let totalPrice = 0;
+        let selectedCount = 0;
 
-        // Lặp qua tất cả các checkbox
+        // Duyệt qua các sản phẩm
         const items = document.querySelectorAll('.selection');
         items.forEach((item, index) => {
             if (item.checked) {
-                // Lấy số lượng sản phẩm
+                selectedCount++;
                 const quantity = parseInt(document.querySelectorAll('.numberbox1, .numberbox2')[index].textContent);
-
-                // Lấy giá sản phẩm
-                const priceElement = document.querySelectorAll('.section-left__box1__sanpham__dongia span, #dongia_box2')[index];
-                const price = parseFloat(priceElement.textContent.replace(/[^\d]/g, ''));
-
-                // Tính tổng giá cho sản phẩm đó
-                totalPrice += price * quantity;
+                const price = parseFloat(document.querySelectorAll('.section-left__box1__sanpham__dongia span, #dongia_box2')[index].textContent.replace(/[^\d]/g, ''));
+                totalPrice += quantity * price;
             }
         });
 
-        // Cập nhật giá trị tổng tiền
-        document.querySelector('#tamtinh').textContent = totalPrice.toLocaleString('vi-VN') + " đ";
-        document.querySelector('.section-right__thanhtoan__tinhtong p:nth-child(2)').textContent = totalPrice.toLocaleString('vi-VN') + " đ";
+        // Cập nhật tạm tính và tổng tiền
+        document.querySelector('#tamtinh').textContent = totalPrice.toLocaleString('vi-VN') + ' đ';
+        document.querySelector('.section-right__thanhtoan__tinhtong p:nth-child(2)').textContent = totalPrice.toLocaleString('vi-VN') + ' đ';
+
+        // Cập nhật số lượng sản phẩm trên giỏ hàng
+        document.getElementById('cart-count').textContent = selectedCount;
+
+        // Cập nhật thanh tiến trình
+        updateProgressBar(totalPrice);
     }
 
-    // Selection all
+    // Hàm cập nhật thanh tiến trình
+    function updateProgressBar(totalPrice) {
+        const maxPrice = 20000000; // Giá trị tối đa (20 triệu đồng)
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+
+        let progress = (totalPrice / maxPrice) * 100;
+        if (progress > 100) {
+            progress = 100; // Giới hạn tiến trình không vượt quá 100%
+        }
+
+        progressBar.style.width = progress + '%';
+        progressText.textContent = totalPrice.toLocaleString('vi-VN') + ' đ';
+    }
+
+    // Checkbox chọn tất cả sản phẩm
     const selectionAll = document.getElementById('selectionall');
     const selections = document.querySelectorAll('.selection');
     selectionAll.addEventListener('change', function () {
@@ -610,65 +647,10 @@
         updateTotalPrice();
     });
 
-    // Event listener cho các checkbox
+    // Xử lý khi người dùng chọn từng sản phẩm
     selections.forEach(selection => {
         selection.addEventListener('change', updateTotalPrice);
     });
-    // Tính toán tổng giá và cập nhật số lượng giỏ hàng
-    function updateTotalPrice() {
-        let totalPrice = 0;
-        let selectedCount = 0;
-
-        // Lặp qua tất cả các checkbox
-        const items = document.querySelectorAll('.selection');
-        items.forEach((item, index) => {
-            if (item.checked) {
-                selectedCount++;
-
-                // Lấy số lượng sản phẩm
-                const quantity = parseInt(document.querySelectorAll('.numberbox1, .numberbox2')[index].textContent);
-
-                // Lấy giá sản phẩm
-                const priceElement = document.querySelectorAll('.section-left__box1__sanpham__dongia span, #dongia_box2')[index];
-                const price = parseFloat(priceElement.textContent.replace(/[^\d]/g, ''));
-
-                // Tính tổng giá cho sản phẩm đó
-                totalPrice += price * quantity;
-            }
-        });
-
-        // Cập nhật giá trị tổng tiền
-        document.querySelector('#tamtinh').textContent = totalPrice.toLocaleString('vi-VN') + " đ";
-        document.querySelector('.section-right__thanhtoan__tinhtong p:nth-child(2)').textContent = totalPrice.toLocaleString('vi-VN') + " đ";
-
-        // Cập nhật số lượng trên biểu tượng giỏ hàng
-        document.getElementById('cart-count').textContent = selectedCount;
-
-        // Gọi hàm cập nhật thanh tiến trình
-        updateProgressBar(totalPrice);
-    }
-
-    function updateProgressBar(totalPrice) {
-        const maxPrice = 20000000; // Giới hạn giá tối đa (20 triệu đồng)
-        const progressBar = document.getElementById('progress-bar');
-        const progressText = document.getElementById('progress-text');
-
-        // Tính toán tỷ lệ dựa trên giá trị tổng tiền
-        let progress = (totalPrice / maxPrice) * 100;
-
-        // Đảm bảo tỷ lệ không vượt quá 100%
-        if (progress > 100) {
-            progress = 100;
-        }
-
-        // Cập nhật chiều rộng của thanh tiến trình
-        progressBar.style.width = progress + '%';
-
-        // Hiển thị giá trị trực tiếp trên thanh
-        progressText.textContent = totalPrice.toLocaleString('vi-VN') + " đ";
-    }
-
-    
 
 </script>
 
